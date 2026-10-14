@@ -9,7 +9,7 @@
     states: 'data/state_online_2025.csv'
   };
 
-  const BLUE = DASHBOARD_THEME.colors.teal;
+  const TEAL = DASHBOARD_THEME.colors.teal;
   const ORANGE = DASHBOARD_THEME.colors.gold;
   const VL_SCHEMA = 'https://vega.github.io/schema/vega-lite/v6.json';
 
@@ -42,7 +42,7 @@
           x: { field: 'spend_billion', type: 'quantitative', title: '2025 online spend (A$ billion)' },
           y: { field: 'yoy_growth', type: 'quantitative', title: '2025 YoY growth (%)', scale: { zero: false } },
           size: { field: 'spend_billion', type: 'quantitative', scale: { range: [120, 850] }, legend: null },
-          color: { condition: { param: 'categoryClick5', value: ORANGE }, value: BLUE },
+          color: { condition: { param: 'categoryClick5', value: ORANGE }, value: TEAL },
           tooltip: [
             { field: 'category', type: 'nominal', title: 'Category' },
             { field: 'spend_billion', type: 'quantitative', title: 'Spend (A$b)' },

@@ -1,14 +1,8 @@
-/**
- * FIT3179 DV2 — Chart 14 (standalone)
- * Include this script after loading Vega, Vega-Lite and Vega-Embed.
- * Renders into <div id="chart14"></div>.
- * Requires the CSV data in the project's data/ folder.
- */
+
 (() => {
   'use strict';
 
-  // Standalone chart file: no config.js required.
-  // Requires Vega 6, Vega-Lite 6 and Vega-Embed 7 loaded in index.html.
+
   const FILE = {
     monthly: 'data/abs_online_monthly.csv',
     category: 'data/category_online_2025.csv',
@@ -18,7 +12,6 @@
 
   const TEAL = DASHBOARD_THEME.colors.sage;
   const VL_SCHEMA = 'https://vega.github.io/schema/vega-lite/v6.json';
-  const VEGA_SCHEMA = 'https://vega.github.io/schema/vega/v6.json';
 
   function embedVL(target, spec) {
     return vegaEmbed(target, {
@@ -37,10 +30,7 @@
       .catch(error => console.error(`Failed to render ${target}`, error));
   }
 
-  // 14 — WATERFALL OF ESTIMATED CATEGORY CONTRIBUTIONS TO ONLINE SPENDING GROWTH
-  // Values derived from rounded Australia Post 2025 spend and YoY growth.
-  // 14 — LOLLIPOP OF ESTIMATED CATEGORY CONTRIBUTIONS TO ONLINE SPENDING GROWTH
-  // 14 — LOLLIPOP CHART OF ESTIMATED ONLINE SPENDING GROWTH
+
   const chart14 = {
     width: 'container',
     height: 420,
@@ -92,7 +82,6 @@
     },
 
     layer: [
-      // Horizontal stems from zero to each category value
       {
         mark: {
           type: 'rule',
@@ -107,7 +96,6 @@
         }
       },
 
-      // Lollipop circles
       {
         mark: {
           type: 'circle',
@@ -151,7 +139,6 @@
         }
       },
 
-      // Value labels next to circles
       {
         mark: {
           type: 'text',

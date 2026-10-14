@@ -1,14 +1,8 @@
-/**
- * FIT3179 DV2 — Chart 6 (standalone)
- * Include this script after loading Vega, Vega-Lite and Vega-Embed.
- * Renders into <div id="chart6"></div>.
- * Requires the CSV data in the project's data/ folder.
- */
+
 (() => {
   'use strict';
 
-  // Standalone chart file: no config.js required.
-  // Requires Vega 6, Vega-Lite 6 and Vega-Embed 7 loaded in index.html.
+
   const FILE = {
     monthly: 'data/abs_online_monthly.csv',
     category: 'data/category_online_2025.csv',
@@ -35,8 +29,7 @@
       .catch(error => console.error(`Failed to render ${target}`, error));
   }
 
-  // 6 — MONTH-BY-YEAR HEATMAP (ADVANCED CANDIDATE)
-  // CHART 6 — MONTHLY SPENDING HEATMAP
+
 
 const chart6 = {
   $schema: VL_SCHEMA,

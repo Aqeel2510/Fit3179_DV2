@@ -1,8 +1,4 @@
 
-/* =====================================
-   AUSTRALIAN ONLINE SHOPPING
-   DARK BACKGROUND / CREAM CHARTS
-===================================== */
 
 :root {
   --cream: #f2ebdd;
@@ -38,7 +34,6 @@ body {
   line-height: 1.65;
 }
 
-/* ===== HEADER ===== */
 
 .hero {
   background: linear-gradient(
@@ -89,7 +84,6 @@ body {
   font-size: 1.12rem;
 }
 
-/* ===== NAVIGATION ===== */
 
 .nav {
   position: sticky;
@@ -125,7 +119,6 @@ body {
   background: var(--gold);
 }
 
-/* ===== MAIN CONTENT ===== */
 
 main {
   max-width: 1420px;
@@ -138,7 +131,6 @@ section {
   scroll-margin-top: 100px;
 }
 
-/* ===== SECTION HEADINGS ===== */
 
 .section-heading {
   max-width: 950px;
@@ -176,7 +168,6 @@ section {
   margin: 0;
 }
 
-/* ===== GRID LAYOUT ===== */
 
 .dashboard-grid {
   display: grid;
@@ -196,7 +187,6 @@ section {
 .span-5  { grid-column: span 5; }
 .span-4  { grid-column: span 4; }
 
-/* ===== CREAM CHART CARDS ===== */
 
 .chart-card {
   min-width: 0;
@@ -219,7 +209,6 @@ section {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
 }
 
-/* Featured cards are still cream */
 .chart-card.featured {
   background: var(--cream);
   border-top: 5px solid var(--gold);
@@ -244,7 +233,6 @@ section {
   margin: 0 0 25px;
 }
 
-/* ===== CHART CONTAINERS ===== */
 
 .chart {
   width: 100%;
@@ -259,7 +247,6 @@ section {
   max-width: 100%;
 }
 
-/* ===== STORY DIVIDERS ===== */
 
 .story-divider {
   margin: 55px 0;
@@ -281,7 +268,6 @@ section {
   color: var(--gold);
 }
 
-/* ===== FOOTER ===== */
 
 footer {
   background: #17201a;
@@ -298,7 +284,6 @@ footer strong {
   color: var(--gold);
 }
 
-/* ===== TABLET ===== */
 
 @media (max-width: 1000px) {
 
@@ -319,7 +304,6 @@ footer strong {
   }
 }
 
-/* ===== MOBILE ===== */
 
 @media (max-width: 600px) {
 

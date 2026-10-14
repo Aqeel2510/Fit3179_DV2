@@ -1,5 +1,4 @@
 
-/** FIT3179 DV2 — Chart 12: Themed category-to-growth Sankey (Vega 6). */
 (() => {
   'use strict';
 
@@ -198,7 +197,6 @@
       ],
 
       marks: [
-        // Sankey flows
         {
           type: 'path',
           name: 'links12',
@@ -237,7 +235,6 @@
           }
         },
 
-        // Category nodes
         {
           type: 'rect',
 
@@ -265,7 +262,6 @@
           }
         },
 
-        // Category labels
         {
           type: 'text',
 
@@ -312,7 +308,6 @@
           }
         },
 
-        // Growth-group nodes
         {
           type: 'rect',
 
@@ -341,7 +336,6 @@
           }
         },
 
-        // Growth-group labels
         {
           type: 'text',
 
