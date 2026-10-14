@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": 420,
+  "height": 420,
+
+  "data": {
+    "url": "data/state_tiles.csv"
+  },
+
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 3,
+        "cornerRadius": 8
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {"domain": [0, 4]},
+          "axis": null
+        },
+        "x2": {"field": "x1"},
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {"domain": [4, 0]},
+          "axis": null
+        },
+        "y2": {"field": "y1"},
+        "color": {
+          "field": "yoy_growth",
+          "type": "quantitative",
+          "title": "YoY growth (%)"
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "yoy_growth", "type": "quantitative", "title": "YoY growth (%)"}
+        ]
+      }
+    },
+
+    {
+      "transform": [
+        {"calculate": "(datum.x0 + datum.x1) / 2", "as": "xc"},
+        {"calculate": "(datum.y0 + datum.y1) / 2 - 0.12", "as": "yc"}
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 15,
+        "fontWeight": "bold",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "field": "xc",
+          "type": "quantitative",
+          "scale": {"domain": [0, 4]},
+          "axis": null
+        },
+        "y": {
+          "field": "yc",
+          "type": "quantitative",
+          "scale": {"domain": [4, 0]},
+          "axis": null
+        },
+        "text": {"field": "state_abbr"},
+        "color": {
+          "value": "black"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {"calculate": "(datum.x0 + datum.x1) / 2", "as": "xc"},
+        {"calculate": "(datum.y0 + datum.y1) / 2 + 0.16", "as": "yc"},
+        {"calculate": "datum.yoy_growth + '%'", "as": "growth_label"}
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "field": "xc",
+          "type": "quantitative",
+          "scale": {"domain": [0, 4]},
+          "axis": null
+        },
+        "y": {
+          "field": "yc",
+          "type": "quantitative",
+          "scale": {"domain": [4, 0]},
+          "axis": null
+        },
+        "text": {"field": "growth_label"},
+        "color": {
+          "value": "black"
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

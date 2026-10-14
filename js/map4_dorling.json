@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 500,
+  "height": 450,
+  "padding": 10,
+
+  "data": [
+    {
+      "name": "states",
+      "url": "data/state_dorling.csv",
+      "format": {
+                "type": "csv",
+                "parse": {
+                    "x": "number",
+                    "y": "number",
+                    "yoy_growth": "number",
+                    "spend_billion": "number"
+                }
+                },
+      "transform": [
+        {
+          "type": "formula",
+          "as": "radius",
+          "expr": "8 + datum.yoy_growth * 2.2"
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "color",
+      "type": "linear",
+      "domain": [10, 14, 18],
+"range": ["#d9f3e8", "#46b6a3", "#075c5b"]
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {"data": "states"},
+      "encode": {
+        "enter": {
+          "x": {"field": "x"},
+          "y": {"field": "y"},
+          "size": {"signal": "6 * datum.radius * datum.radius"},
+          "fill": {"scale": "color", "field": "yoy_growth"},
+          "stroke": {"value": "white"},
+          "strokeWidth": {"value": 2},
+          "opacity": {"value": 0.95},
+          "tooltip": {
+            "signal": "{'State': datum.state, 'YoY growth (%)': datum.yoy_growth, 'Online spend ($b)': datum.spend_billion}"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "states"},
+      "encode": {
+        "enter": {
+          "x": {"field": "x"},
+          "y": {"field": "y", "offset": -8},
+          "text": {"field": "state_abbr"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fontSize": {"value": 13},
+          "fontWeight": {"value": "bold"},
+          "fill": {"value": "black"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "states"},
+      "encode": {
+        "enter": {
+          "x": {"field": "x"},
+          "y": {"field": "y", "offset": 10},
+          "text": {"signal": "datum.yoy_growth + '%'"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fontSize": {"value": 12},
+          "fill": {"value": "black"}
+        }
+      }
+    }
+  ],
+
+  "legends": [
+    {
+      "fill": "color",
+      "title": "YoY growth (%)",
+      "orient": "right"
+    }
+  ]
+}

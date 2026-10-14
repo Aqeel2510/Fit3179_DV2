@@ -1,0 +1,515 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Australian Online Shopping</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+
+  <script src="js/theme.js"></script>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="hero-content">
+
+      <h1>
+        The Changing Face of<br>
+        Australian Online Shopping
+      </h1>
+
+      <p>
+        Exploring how Australians shop online, where spending
+        is growing, and how purchasing habits differ across
+        states, categories and generations.
+      </p>
+
+    </div>
+  </header>
+
+
+  <nav class="nav">
+    <a href="#trends">Spending Trends</a>
+    <a href="#geography">State Differences</a>
+    <a href="#growth">Market Growth</a>
+    <a href="#behaviour">Shopping Behaviour</a>
+    <a href="#relationships">Relationships</a>
+  </nav>
+
+
+  <main>
+
+    <section id="trends">
+
+      <div class="section-heading">
+        <h2>The Rise of Online Shopping</h2>
+        <p>
+          How has Australia's online shopping market changed
+          over time, and are there recurring seasonal patterns?
+        </p>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <article class="chart-card span-7 featured">
+
+          <h3>How Has Online Spending Changed?</h3>
+
+          <p class="chart-description">
+            Exploring how purchasing activity has evolved over the years.
+          </p>
+
+          <div id="chart4" class="chart"></div>
+
+        </article>
+
+
+        <!-- Chart 10: Box Plot -->
+        <article class="chart-card span-5">
+
+          <h3>How Consistent Is Monthly Spending?</h3>
+
+          <p class="chart-description">
+            Compare the median, maximum and minimum amount of
+            spending across different years.
+          </p>
+
+          <div id="chart10" class="chart"></div>
+
+        </article>
+
+
+        <article class="chart-card span-12">
+
+          <h3>When Do Australians Spend the Most?</h3>
+
+          <p class="chart-description">
+            A monthly spending heatmap reveals recurring
+            seasonal peaks and quieter shopping periods.
+          </p>
+
+          <div id="chart6" class="chart"></div>
+
+          <p class="chart-note">
+            * Note: The ABS online retail dataset used covers
+            July 2020 to June 2025. Blank cells indicate months
+            outside this period for which data is not included.
+          </p>
+
+        </article>
+
+      </div>
+    </section>
+
+
+    <div class="story-divider">
+      <p>
+        National trends reveal when Australians shop online.
+        But is spending distributed equally across the country?
+      </p>
+    </div>
+
+
+    <section id="geography">
+
+      <div class="section-heading">
+        <h2>Where Are Australians Spending Online?</h2>
+
+        <p>
+          Explore differences between Australian states,
+          from total online spending to expenditure
+          adjusted for population.
+        </p>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <article class="chart-card span-6">
+
+          <h3>Which States Spend the Most?</h3>
+
+          <p class="chart-description">
+            Compare the total online shopping expenditure
+            recorded across Australian states.
+          </p>
+
+          <div id="map2" class="chart"></div>
+
+        </article>
+
+
+        <article class="chart-card span-6">
+
+          <h3>Which States Spend More per Resident?</h3>
+
+          <p class="chart-description">
+            Population-adjusted spending reveals differences
+            that may be hidden by total expenditure.
+          </p>
+
+          <div id="map1" class="chart"></div>
+
+        </article>
+
+
+        <article class="chart-card span-12 featured">
+
+          <h3>Does Online Spending Match Population?</h3>
+
+          <p class="chart-description">
+            Compare each state's share of online spending
+            with its share of Australia's population to
+            identify differences in relative spending.
+          </p>
+
+          <div id="chart9" class="chart"></div>
+
+        </article>
+
+      </div>
+    </section>
+
+
+    <section id="growth">
+
+      <div class="section-heading">
+        <h2>Where Is Online Shopping Growing Fastest?</h2>
+
+        <p>
+          High total spending does not necessarily mean
+          a state is experiencing the fastest growth.
+          Explore how market size and growth differ.
+        </p>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <article class="chart-card span-7 featured">
+
+          <h3>Growth Across Australia</h3>
+
+          <p class="chart-description">
+            Compare year-on-year online spending growth
+            across Australian states during 2025.
+          </p>
+
+          <div id="map3" class="chart"></div>
+
+        </article>
+
+
+        <article class="chart-card span-5">
+
+          <h3>Spending vs Growth</h3>
+
+          <p class="chart-description">
+            Distinguish larger established markets from
+            states experiencing stronger growth.
+          </p>
+
+          <div id="chart5" class="chart"></div>
+
+        </article>
+
+      </div>
+    </section>
+
+
+    <div class="story-divider">
+      <p>
+        Beyond where Australians shop, what are they
+        buying, and how do purchasing habits differ
+        across generations?
+      </p>
+    </div>
+
+
+    <section id="behaviour">
+
+      <div class="section-heading">
+        <h2>Inside the Australian Shopping Basket</h2>
+
+        <p>
+          Explore product preferences, generational
+          differences and shopping patterns across
+          different groups of Australians.
+        </p>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <article class="chart-card span-12 featured">
+
+          <h3>What Are Australians Buying Online?</h3>
+
+          <div id="chart7" class="chart"></div>
+
+        </article>
+
+
+        <article class="chart-card span-4">
+
+          <h3>How Do Generations Shop Differently?</h3>
+
+          <p class="chart-description">
+            Explore differences in online shopping
+            behaviour across generations.
+          </p>
+
+          <div id="chart8" class="chart"></div>
+
+        </article>
+
+
+        <article class="chart-card span-8">
+
+          <h3>Comparing Online Shopping Values</h3>
+
+          <p class="chart-description">
+            Explore differences between the groups
+            represented in the lollipop chart.
+          </p>
+
+          <div id="chart14" class="chart"></div>
+
+        </article>
+
+      </div>
+    </section>
+
+
+    <section id="relationships">
+
+      <div class="section-heading">
+        <h2>How Are Shopping Patterns Connected?</h2>
+
+        <p>
+          Bringing different dimensions of Australia's
+          online shopping landscape together helps
+          examine relationships between them.
+        </p>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <article class="chart-card span-12 featured">
+
+          <h3>Exploring Online Shopping Relationships</h3>
+
+          <p class="chart-description">
+            Follow the flows between different shopping
+            dimensions in the Sankey diagram. Wider
+            connections represent larger values.
+          </p>
+
+          <div id="chart12" class="chart"></div>
+
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- METADATA AND SOURCES -->
+  <section id="metadata" class="metadata-section">
+
+    <div class="metadata-container">
+
+      <div class="section-label">
+        DATA DOCUMENTATION
+      </div>
+
+      <h2>Metadata &amp; Sources</h2>
+
+      <p class="metadata-intro">
+        This dashboard combines publicly available Australian
+        statistical data and eCommerce industry research to
+        explore online shopping trends, geographical differences,
+        consumer preferences and purchasing behaviour.
+      </p>
+
+      <div class="metadata-grid">
+
+        <div class="metadata-block">
+
+          <h3>01 / Data Sources</h3>
+
+          <div class="source-item">
+            <strong>Australian Bureau of Statistics (ABS)</strong>
+
+            <p>
+              <a
+                href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-4-july-2026-june-2031/access-and-downloads/digital-boundary-files"
+                target="_blank"
+                rel="noopener noreferrer">
+                <em>Australian Statistical Geography Standard
+                (ASGS) Digital Boundary Files</em>
+              </a>
+              - geographic boundary data for Australian states
+              and territories, used to construct the choropleth,
+              proportional symbol and Dorling cartogram maps.
+            </p>
+          </div>
+
+
+          <div class="source-item">
+            <strong>Australian Bureau of Statistics (ABS)</strong>
+
+            <p>
+              <a
+                href="https://www.abs.gov.au/statistics/industry/retail-and-wholesale-trade/retail-trade-australia"
+                target="_blank"
+                rel="noopener noreferrer">
+                <em>Retail Trade, Australia</em>
+              </a>
+              - historical monthly online retail turnover,
+              including the experimental online retail
+              turnover series.
+            </p>
+          </div>
+
+
+          <div class="source-item">
+            <strong>Australian Bureau of Statistics (ABS)</strong>
+
+            <p>
+              <a
+                href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population"
+                target="_blank"
+                rel="noopener noreferrer">
+                <em>National, State and Territory Population</em>
+              </a>
+              - estimated resident population used for
+              geographical and per-resident comparisons.
+            </p>
+          </div>
+
+
+          <div class="source-item">
+            <strong>Australia Post</strong>
+
+            <p>
+              <a
+                href="https://auspost.com.au/business/ecommerce/ecommerce-report"
+                target="_blank"
+                rel="noopener noreferrer">
+                <em>2026 eCommerce Report</em>
+              </a>
+              - online shopping expenditure, purchasing
+              behaviour, categories, generations and
+              geographical shopping trends.
+            </p>
+          </div>
+
+
+          <div class="source-item">
+            <strong>Australia Post</strong>
+
+            <p>
+              <a
+                href="https://auspost.com.au/business/grow-your-business/ecommerce-reports"
+                target="_blank"
+                rel="noopener noreferrer">
+                <em>July 2026 Quarterly eCommerce Update</em>
+              </a>
+              - supplementary insights on Australia's
+              online shopping market.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="metadata-block">
+
+          <h3>02 / Dashboard Information</h3>
+
+          <div class="source-item">
+            <strong>Author</strong>
+            <p>Mohamed Aqeel</p>
+          </div>
+
+          <div class="source-item">
+            <strong>Date Published</strong>
+            <p>14 October 2026</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <footer>
+
+    <strong>Australian Online Shopping</strong>
+
+    <p>Data Visualisation Dashboard</p>
+
+    <p>
+      Data sources: Australian Bureau of Statistics
+      and Australia Post eCommerce Reports
+    </p>
+
+  </footer>
+
+
+  <script>
+
+    vegaEmbed(
+      '#map1',
+      'js/map1_choropleth.json',
+      {
+        actions: false,
+        config: DASHBOARD_THEME.vlConfig
+      }
+    ).catch(console.error);
+
+
+    vegaEmbed(
+      '#map2',
+      'js/map2_symbols.json',
+      {
+        actions: false,
+        config: DASHBOARD_THEME.vlConfig
+      }
+    ).catch(console.error);
+
+
+    vegaEmbed(
+      '#map3',
+      'js/map4_dorling.json',
+      {
+        actions: false,
+        config: DASHBOARD_THEME.vlConfig
+      }
+    ).catch(console.error);
+
+  </script>
+
+  <script src="js/chart4_line.js"></script>
+  <script src="js/chart5_scatter.js"></script>
+  <script src="js/chart6_heat.js"></script>
+  <script src="js/chart7_tree.js"></script>
+  <script src="js/chart8_slope.js"></script>
+  <script src="js/chart9_dumbell.js"></script>
+  <script src="js/chart10_box.js"></script>
+  <script src="js/chart12_sankey.js"></script>
+  <script src="js/chart14_lollipop.js"></script>
+
+</body>
+</html>
+

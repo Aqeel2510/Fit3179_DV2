@@ -1,0 +1,88 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": "container",
+  "height": 400,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
+
+  "data": {
+    "url": "data/states.json",
+    "format": {
+      "type": "topojson",
+      "feature": "states"
+    }
+  },
+
+  "transform": [
+    {
+      "lookup": "properties.STE_NAME26",
+      "from": {
+        "data": {
+          "url": "data/state_online_2025.csv"
+        },
+        "key": "state",
+        "fields": [
+          "state_abbr",
+          "spend_billion",
+          "yoy_growth",
+          "population"
+        ]
+      }
+    },
+
+    {
+      "calculate":
+        "datum.spend_billion * 1000000000 / datum.population",
+      "as": "spend_per_person"
+    }
+  ],
+
+  "projection": {
+    "type": "mercator"
+
+  },
+
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 1
+  },
+
+  "encoding": {
+
+    "color": {
+      "field": "spend_per_person",
+      "type": "quantitative",
+      "title": "Online spend per resident"
+    },
+
+    "tooltip": [
+      {
+        "field": "properties.STE_NAME26",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "spend_billion",
+        "type": "quantitative",
+        "title": "Online spend ($b)"
+      },
+      {
+        "field": "population",
+        "type": "quantitative",
+        "title": "Population",
+        "format": ","
+      },
+      {
+        "field": "spend_per_person",
+        "type": "quantitative",
+        "title": "Spend per resident",
+        "format": "$,.0f"
+      }
+    ]
+  }
+}

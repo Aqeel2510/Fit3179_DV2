@@ -1,0 +1,29 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": "container",
+  "height": 490,
+  "autosize": {"type": "fit", "contains": "padding", "resize": true},
+  "background": "transparent",
+  "projection": {"type": "mercator", "center": [134, -28], "scale": 600},
+  "layer": [
+    {
+      "data": {"url": "data/states.json", "format": {"type": "topojson", "feature": "states"}},
+      "mark": {"type": "geoshape", "fill": "#DFE4D8", "stroke": "#F2EBDD", "strokeWidth": 1.2}
+    },
+    {
+      "data": {"url": "data/state_centroids.csv"},
+      "transform": [{"lookup": "state", "from": {"data": {"url": "data/state_online_2025.csv"}, "key": "state", "fields": ["state_abbr", "spend_billion", "yoy_growth"]}}],
+      "mark": {"type": "circle", "color": "#527A68", "opacity": 0.83, "stroke": "#F2EBDD", "strokeWidth": 1.5},
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "size": {"field": "spend_billion", "type": "quantitative", "title": "Online spend ($b)", "scale": {"range": [150, 3500]}, "legend": {"orient": "right", "titleFontSize": 11, "labelFontSize": 10}},
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "spend_billion", "type": "quantitative", "title": "Online spend ($b)"},
+          {"field": "yoy_growth", "type": "quantitative", "title": "YoY growth (%)", "format": ".1f"}
+        ]
+      }
+    }
+  ]
+}
