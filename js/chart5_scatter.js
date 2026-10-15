@@ -2,65 +2,225 @@
 (() => {
   'use strict';
 
-  const FILE = {
-    monthly: 'data/abs_online_monthly.csv',
-    category: 'data/category_online_2025.csv',
-    generation: 'data/generation_online_2025.csv',
-    states: 'data/state_online_2025.csv'
-  };
+  const FILE = 'data/category_online_2025.csv';
+  const T = window.DASHBOARD_THEME;
 
-  const TEAL = DASHBOARD_THEME.colors.teal;
-  const ORANGE = DASHBOARD_THEME.colors.gold;
-  const VL_SCHEMA = 'https://vega.github.io/schema/vega-lite/v6.json';
+  const palette = T?.semantic?.treemap || [
+    '#234B3A',
+    '#C89B51',
+    '#C47751',
+    '#5F8D76',
+    '#477D87',
+    '#87966A',
+    '#937A91',
+    '#6489A4',
+    '#A77F60'
+  ];
+
+  const categoryOrder = [
+    'Online marketplaces',
+    'Food & liquor',
+    'Fashion',
+    'Home & garden',
+    'Consumer electronics',
+    'Hobbies & rec goods',
+    'Health & beauty',
+    'Department stores',
+    'Books stationery & multimedia'
+  ];
+
+  function categoryIndex(name) {
+    const s = String(name).toLowerCase();
+
+    if (s.includes('marketplace')) return 0;
+    if (s.includes('food')) return 1;
+    if (s.includes('fashion')) return 2;
+    if (s.includes('home')) return 3;
+    if (s.includes('electronics')) return 4;
+    if (s.includes('hobbies') || s.includes('recreation')) return 5;
+    if (s.includes('health') || s.includes('beauty')) return 6;
+    if (s.includes('department')) return 7;
+    if (s.includes('books') || s.includes('stationery')) return 8;
+
+    return -1;
+  }
 
   function embedVL(target, spec) {
     return vegaEmbed(target, {
-      $schema: VL_SCHEMA, background: 'transparent', ...spec,
+      $schema: 'https://vega.github.io/schema/vega-lite/v6.json',
+      background: 'transparent',
+      ...spec,
       config: {
         view: { stroke: null },
-        axis: { labelFontSize: 12, titleFontSize: 13 },
-        legend: { labelFontSize: 12, titleFontSize: 12 },
+        axis: {
+          labelFontSize: 12,
+          titleFontSize: 13
+        },
+        legend: {
+          labelFontSize: 12,
+          titleFontSize: 12
+        },
         ...(spec.config || {})
       }
-    }, { actions: false }).catch(error => console.error(`Failed to render ${target}`, error));
+    }, { actions: false });
   }
 
-  function embedVega(target, spec) {
-    return vegaEmbed(target, spec, { actions: false })
-      .catch(error => console.error(`Failed to render ${target}`, error));
-  }
+  async function render() {
+    if (!document.querySelector('#chart5')) return;
 
-  const chart5 = {
-    width: 'container', height: 320,
-    data: { url: FILE.category },
-    layer: [
-      { mark: { type: 'rule', strokeDash: [6, 4], color: '#64748b' }, encoding: { y: { datum: 14 } } },
-      {
-        params: [{ name: 'categoryClick5', select: { type: 'point', fields: ['category'], on: 'click', toggle: false } }],
-        mark: { type: 'circle', opacity: 0.85, stroke: 'white', strokeWidth: 1 },
-        encoding: {
-          x: { field: 'spend_billion', type: 'quantitative', title: '2025 online spend (A$ billion)' },
-          y: { field: 'yoy_growth', type: 'quantitative', title: '2025 YoY growth (%)', scale: { zero: false } },
-          size: { field: 'spend_billion', type: 'quantitative', scale: { range: [120, 850] }, legend: null },
-          color: { condition: { param: 'categoryClick5', value: ORANGE }, value: TEAL },
-          tooltip: [
-            { field: 'category', type: 'nominal', title: 'Category' },
-            { field: 'spend_billion', type: 'quantitative', title: 'Spend (A$b)' },
-            { field: 'yoy_growth', type: 'quantitative', title: 'Growth (%)' }
-          ]
-        }
+    try {
+      const csv = await vega.loader().load(FILE);
+      const rows = vega.read(csv, { type: 'csv' });
+
+      const categories = [
+        ...new Set(rows.map(d => d.category))
+      ];
+
+      const categoryColors = categories.map(name => {
+        const index = categoryIndex(name);
+        return index >= 0 ? palette[index] : '#64748b';
+      });
+
+      const chart5 = {
+        width: 'container',
+        height: 320,
+
+        data: {
+          url: FILE
+        },
+
+        layer: [
+          {
+            mark: {
+              type: 'rule',
+              strokeDash: [6, 4],
+              color: '#64748b'
+            },
+            encoding: {
+              y: { datum: 14 }
+            }
+          },
+
+          {
+            params: [{
+              name: 'categoryClick5',
+              select: {
+                type: 'point',
+                fields: ['category'],
+                on: 'click',
+                toggle: false
+              }
+            }],
+
+            mark: {
+              type: 'circle',
+              stroke: 'white',
+              strokeWidth: 1.5
+            },
+
+            encoding: {
+              x: {
+                field: 'spend_billion',
+                type: 'quantitative',
+                title: '2025 online spend (A$ billion)'
+              },
+
+              y: {
+                field: 'yoy_growth',
+                type: 'quantitative',
+                title: '2025 YoY growth (%)',
+                scale: { zero: false }
+              },
+
+              size: {
+                field: 'spend_billion',
+                type: 'quantitative',
+                scale: {
+                  range: [120, 850]
+                },
+                legend: null
+              },
+
+              color: {
+                field: 'category',
+                type: 'nominal',
+                scale: {
+                  domain: categories,
+                  range: categoryColors
+                },
+                legend: null
+              },
+
+              opacity: {
+                condition: {
+                  param: 'categoryClick5',
+                  value: 1
+                },
+                value: 0.55
+              },
+
+              tooltip: [
+                {
+                  field: 'category',
+                  type: 'nominal',
+                  title: 'Category'
+                },
+                {
+                  field: 'spend_billion',
+                  type: 'quantitative',
+                  title: 'Spend (A$b)'
+                },
+                {
+                  field: 'yoy_growth',
+                  type: 'quantitative',
+                  title: 'Growth (%)'
+                }
+              ]
+            }
+          }
+        ]
+      };
+
+      await embedVL('#chart5', chart5);
+
+      const legend = document.querySelector('#chart5-legend');
+
+      if (legend) {
+        legend.replaceChildren();
+
+        const ordered = categories
+          .map((name, i) => ({
+            name,
+            color: categoryColors[i],
+            order: categoryIndex(name)
+          }))
+          .sort((a, b) => a.order - b.order);
+
+        ordered.forEach(item => {
+          const row = document.createElement('div');
+          row.className = 'scatter-legend-item';
+
+          const dot = document.createElement('span');
+          dot.className = 'scatter-legend-dot';
+          dot.style.backgroundColor = item.color;
+
+          const label = document.createElement('span');
+          label.textContent = item.name;
+
+          row.append(dot, label);
+          legend.appendChild(row);
+        });
       }
-    ]
-  };
 
-  function render() {
-    if (document.querySelector('#chart5')) {
-      embedVL('#chart5', chart5);
+    } catch (error) {
+      console.error('Failed to render scatter chart', error);
     }
   }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', render);
   } else {
     render();
   }
 })();
+
