@@ -48,19 +48,15 @@
     mark: { type: 'line', strokeWidth: 3, point: { filled: true, size: 130 } },
     encoding: {
       x: { field: 'metric_label', type: 'nominal', sort: ['Total spending', 'Average Order'], title: null },
-      y: { field: 'ranking', type: 'quantitative', title: 'Rank (1 = highest)', scale: { domain: [1, 5], reverse: true }, axis: { tickMinStep: 1 } },
+      y: { field: 'ranking', type: 'quantitative', title: 'Rank', scale: { domain: [1, 5], reverse: true }, axis: { tickMinStep: 1 } },
       color: {
       field: 'generation',
       type: 'nominal',
       title: 'Generation',
       scale: {
         range: GENERATION_COLORS
-      },
-      legend: {
-        orient: 'bottom',
-        direction: 'horizontal',
-        title: null
       }
+    
     },
       detail: { field: 'generation' },
       tooltip: [
