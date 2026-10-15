@@ -12,6 +12,13 @@
  
   const VL_SCHEMA = 'https://vega.github.io/schema/vega-lite/v6.json';
 
+  const GENERATION_COLORS = [
+    '#5965B3',
+    '#D15B9A',
+    '#29A0C4',
+    '#8A58C4',
+    '#C45175'
+  ];
   function embedVL(target, spec) {
     return vegaEmbed(target, {
       $schema: VL_SCHEMA, background: 'transparent', ...spec,
@@ -42,7 +49,19 @@
     encoding: {
       x: { field: 'metric_label', type: 'nominal', sort: ['Total spending', 'Average Order'], title: null },
       y: { field: 'ranking', type: 'quantitative', title: 'Rank (1 = highest)', scale: { domain: [1, 5], reverse: true }, axis: { tickMinStep: 1 } },
-      color: { field: 'generation', type: 'nominal', title: 'Generation' },
+      color: {
+      field: 'generation',
+      type: 'nominal',
+      title: 'Generation',
+      scale: {
+        range: GENERATION_COLORS
+      },
+      legend: {
+        orient: 'bottom',
+        direction: 'horizontal',
+        title: null
+      }
+    },
       detail: { field: 'generation' },
       tooltip: [
         { field: 'generation', type: 'nominal' },
