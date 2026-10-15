@@ -10,7 +10,31 @@
     states: 'data/state_online_2025.csv'
   };
 
-  const TEAL = DASHBOARD_THEME.colors.sage;
+  const T = window.DASHBOARD_THEME;
+
+  const palette = T?.semantic?.treemap || [
+    '#234B3A',
+    '#C89B51',
+    '#C47751',
+    '#5F8D76',
+    '#477D87',
+    '#87966A',
+    '#937A91',
+    '#6489A4',
+    '#A77F60'
+  ];
+
+  const categoryColors = {
+    'Online marketplaces': palette[0],
+    'Food & liquor': palette[1],
+    'Fashion': palette[2],
+    'Home & garden': palette[3],
+    'Consumer electronics': palette[4],
+    'Hobbies & rec goods': palette[5],
+    'Health & beauty': palette[6],
+    'Department stores': palette[7],
+    'Books stationery & multimedia': palette[8]
+  };
   const VL_SCHEMA = 'https://vega.github.io/schema/vega-lite/v6.json';
 
   function embedVL(target, spec) {
@@ -49,6 +73,20 @@
       {
         calculate: '0',
         as: 'zero'
+      },
+      {
+        calculate: `{
+          'Online marketplaces': '${palette[0]}',
+          'Food & liquor': '${palette[1]}',
+          'Fashion': '${palette[2]}',
+          'Home & garden': '${palette[3]}',
+          'Consumer electronics': '${palette[4]}',
+          'Hobbies & rec goods': '${palette[5]}',
+          'Health & beauty': '${palette[6]}',
+          'Department stores': '${palette[7]}',
+          'Books stationery & multimedia': '${palette[8]}'
+        }[datum.category] || '#64748b'`,
+        as: 'category_color'
       }
     ],
 
@@ -100,11 +138,19 @@
         mark: {
           type: 'circle',
           size: 200,
-          color: TEAL,
-          opacity: 0.95
+          opacity: 0.95,
+          stroke: 'white',
+          strokeWidth: 1
         },
 
         encoding: {
+          color: {
+            field: 'category_color',
+            type: 'nominal',
+            scale: null,
+            legend: null
+          },
+
           tooltip: [
             {
               field: 'category',
