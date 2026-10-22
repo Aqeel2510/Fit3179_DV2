@@ -30,6 +30,14 @@
       COLORS.olive,
       COLORS.blue
     ],
+    sequential: [
+    '#EAE6D9',
+    '#C9D8C2',
+    '#94B5A0',
+    '#5F8D76',
+    '#234B3A'
+  ],
+
 
     sankey: [
       '#B9654E',

@@ -32,7 +32,7 @@
       "name": "color",
       "type": "linear",
       "domain": [10, 14, 18],
-"range": ["#d9f3e8", "#46b6a3", "#075c5b"]
+      "range": ["#d9f3e8", "#46b6a3", "#075c5b"]
     }
   ],
 
