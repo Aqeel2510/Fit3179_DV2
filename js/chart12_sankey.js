@@ -6,10 +6,9 @@
 
   const THEME = window.DASHBOARD_THEME;
 
-  const ABOVE = THEME?.semantic?.positive || '#286653';
-  const BELOW = THEME?.semantic?.negative || '#C47751';
-  const NEUTRAL = THEME?.colors?.sage || '#5F8D76';
-  const TEXT = THEME?.colors?.text || '#26352D';
+  const ABOVE = THEME.palettes.sankey[1];
+  const BELOW = THEME.palettes.sankey[0];
+  const TEXT = THEME.colors.text;
 
   function sankeyPath(x0, x1, y0, y1, h) {
     const c0 = x0 + (x1 - x0) * 0.48;
@@ -249,9 +248,7 @@
               y: { field: 'y0' },
               y2: { field: 'y1' },
 
-              fill: {
-                value: NEUTRAL
-              },
+              
 
               tooltip: {
                 signal:

@@ -10,8 +10,8 @@
     states: 'data/state_online_2025.csv'
   };
 
-  const BLUE = DASHBOARD_THEME.colors.teal;
-  const ORANGE = DASHBOARD_THEME.colors.gold;
+  const TEAL = DASHBOARD_THEME.colors.teal;
+  const GOLD = DASHBOARD_THEME.colors.gold;
   const VL_SCHEMA = 'https://vega.github.io/schema/vega-lite/v6.json';
 
   function embedVL(target, spec) {
@@ -26,10 +26,7 @@
     }, { actions: false }).catch(error => console.error(`Failed to render ${target}`, error));
   }
 
-  function embedVega(target, spec) {
-    return vegaEmbed(target, spec, { actions: false })
-      .catch(error => console.error(`Failed to render ${target}`, error));
-  }
+
 
   const chart9 = {
     width: 'container', height: 360,
@@ -59,7 +56,7 @@
         mark: { type: 'circle', size: 150 },
         encoding: {
           x: { field: 'share', type: 'quantitative' },
-          color: { field: 'metric_label', type: 'nominal', scale: { domain: ['Population share', 'Online spend share'], range: [ORANGE, BLUE] }, title: null },
+          color: { field: 'metric_label', type: 'nominal', scale: { domain: ['Population share', 'Online spend share'], range: [GOLD, TEAL] }, title: null },
           tooltip: [
             { field: 'state', type: 'nominal' },
             { field: 'metric_label', type: 'nominal', title: 'Measure' },

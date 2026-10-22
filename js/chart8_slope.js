@@ -31,10 +31,7 @@
     }, { actions: false }).catch(error => console.error(`Failed to render ${target}`, error));
   }
 
-  function embedVega(target, spec) {
-    return vegaEmbed(target, spec, { actions: false })
-      .catch(error => console.error(`Failed to render ${target}`, error));
-  }
+  
 
   const chart8 = {
     width: 'container', height: 335,

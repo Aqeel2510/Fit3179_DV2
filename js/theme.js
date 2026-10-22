@@ -11,6 +11,7 @@
     olive: '#87966A',
     blue: '#6489A4',
     plum: '#937A91',
+    brown: '#A77F60',
 
     cream: '#F2EBDD',
     text: '#26352D',
@@ -30,19 +31,8 @@
       COLORS.blue
     ],
 
-    sequential: [
-      '#EAE6D9',
-      '#C9D8C2',
-      '#94B5A0',
-      '#5F8D76',
-      '#234B3A'
-    ],
-
-    diverging: [
+    sankey: [
       '#B9654E',
-      '#DDA98C',
-      '#F1E9DA',
-      '#9FBCAF',
       '#286653'
     ]
   };
@@ -90,7 +80,7 @@
       category: PALETTES.categorical,
       ramp: PALETTES.sequential,
       heatmap: PALETTES.sequential,
-      diverging: PALETTES.diverging
+      sankey: PALETTES.sankey
     },
 
     line: {
@@ -122,39 +112,6 @@
     colors: COLORS,
     palettes: PALETTES,
     vlConfig
-  };
-
-  const originalEmbed = window.vegaEmbed;
-
-  if (typeof originalEmbed !== 'function') {
-    console.error('Load Vega-Embed before theme.js');
-    return;
-  }
-
-  window.vegaEmbed = function(target, spec, options = {}) {
-    const existingConfig = options.config || {};
-
-    const mergedConfig = {
-      ...vlConfig,
-      ...existingConfig,
-      axis: {
-        ...vlConfig.axis,
-        ...existingConfig.axis
-      },
-      legend: {
-        ...vlConfig.legend,
-        ...existingConfig.legend
-      },
-      range: {
-        ...vlConfig.range,
-        ...existingConfig.range
-      }
-    };
-
-    return originalEmbed(target, spec, {
-      ...options,
-      config: mergedConfig
-    });
   };
 
 })();

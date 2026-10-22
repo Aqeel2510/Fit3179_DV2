@@ -33,8 +33,8 @@
       },
       {
         calculate:
-          "datum.year_num == 2020 ? '2020 (Jun–Dec)' : " +
-          "datum.year_num == 2025 ? '2025 (Jan–Jun)' : " +
+          "datum.year_num == 2020 ? '2020' : " +
+          "datum.year_num == 2025 ? '2025' : " +
           "toString(datum.year_num)",
         as: 'year_label'
       },
@@ -80,12 +80,12 @@
             field: 'year_label',
             type: 'ordinal',
             sort: [
-              '2020 (Jun–Dec)',
+              '2020',
               '2021',
               '2022',
               '2023',
               '2024',
-              '2025 (Jan–Jun)'
+              '2025'
             ],
             title: null,
             axis: {

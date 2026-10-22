@@ -5,29 +5,19 @@
   const FILE = 'data/category_online_2025.csv';
   const T = window.DASHBOARD_THEME;
 
-  const palette = T?.semantic?.treemap || [
-    '#234B3A',
-    '#C89B51',
-    '#C47751',
-    '#5F8D76',
-    '#477D87',
-    '#87966A',
-    '#937A91',
-    '#6489A4',
-    '#A77F60'
+    const palette = [
+    T.colors.forest,
+    T.colors.gold,
+    T.colors.terracotta,
+    T.colors.sage,
+    T.colors.teal,
+    T.colors.olive,
+    T.colors.plum,
+    T.colors.blue,
+    T.colors.brown
   ];
 
-  const categoryOrder = [
-    'Online marketplaces',
-    'Food & liquor',
-    'Fashion',
-    'Home & garden',
-    'Consumer electronics',
-    'Hobbies & rec goods',
-    'Health & beauty',
-    'Department stores',
-    'Books stationery & multimedia'
-  ];
+  
 
   function categoryIndex(name) {
     const s = String(name).toLowerCase();

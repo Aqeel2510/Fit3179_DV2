@@ -12,29 +12,19 @@
 
   const T = window.DASHBOARD_THEME;
 
-  const palette = T?.semantic?.treemap || [
-    '#234B3A',
-    '#C89B51',
-    '#C47751',
-    '#5F8D76',
-    '#477D87',
-    '#87966A',
-    '#937A91',
-    '#6489A4',
-    '#A77F60'
+  const palette = [
+    T.colors.forest,
+    T.colors.gold,
+    T.colors.terracotta,
+    T.colors.sage,
+    T.colors.teal,
+    T.colors.olive,
+    T.colors.plum,
+    T.colors.blue,
+    T.colors.brown
   ];
 
-  const categoryColors = {
-    'Online marketplaces': palette[0],
-    'Food & liquor': palette[1],
-    'Fashion': palette[2],
-    'Home & garden': palette[3],
-    'Consumer electronics': palette[4],
-    'Hobbies & rec goods': palette[5],
-    'Health & beauty': palette[6],
-    'Department stores': palette[7],
-    'Books stationery & multimedia': palette[8]
-  };
+
   const VL_SCHEMA = 'https://vega.github.io/schema/vega-lite/v6.json';
 
   function embedVL(target, spec) {
