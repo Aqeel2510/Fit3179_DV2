@@ -21,7 +21,7 @@
 
     transform: [
       {
-        calculate: 'datum.food_m + datum.non_food_m',
+        calculate: '(datum.food_m + datum.non_food_m) / 1000',
         as: 'total_m'
       },
       {
@@ -101,13 +101,13 @@
           y: {
             field: 'total_m',
             type: 'quantitative',
-            title: 'Monthly online spending (A$ million)',
+            title: 'Monthly online spending (A$ Billion)',
             scale: {
-              domain: [2800, 4800],
+              domain: [2.8, 4.8],
               zero: false
             },
             axis: {
-              format: ',.0f',
+              format: ',.1f',
               grid: true,
               labelFontSize: 12,
               titleFontSize: 13,

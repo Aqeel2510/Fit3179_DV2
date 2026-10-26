@@ -108,74 +108,86 @@
       },
 
       {
-        type: 'text',
-        from: { data: 'tree' },
-        interactive: false,
+  type: 'text',
+  from: { data: 'tree' },
+  interactive: false,
 
-        encode: {
-          enter: {
-            x: {
-              signal: '(datum.x0 + datum.x1) / 2'
-            },
-            y: {
-              signal: '(datum.y0 + datum.y1) / 2 - 9'
-            },
-
-            text: { field: 'category' },
-            align: { value: 'center' },
-            baseline: { value: 'middle' },
-            fill: { value: '#FFFFFF' },
-            fontSize: { value: 13 },
-            fontWeight: { value: 'bold' },
-
-            limit: {
-              signal: 'max(0, datum.x1 - datum.x0 - 16)'
-            }
-          },
-
-          update: {
-            opacity: {
-              signal: '(datum.x1 - datum.x0) >= 135 && (datum.y1 - datum.y0) >= 55 ? 1 : 0'
-            }
-          }
-        }
+  encode: {
+    enter: {
+      x: {
+        signal: '(datum.x0 + datum.x1) / 2 + ((datum.x1 - datum.x0) < 135 ? -12 : 0)'
+      },
+      y: {
+        signal: '(datum.y0 + datum.y1) / 2 + ((datum.x1 - datum.x0) < 135 ? 0 : -9)'
       },
 
-      {
-        type: 'text',
-        from: { data: 'tree' },
-        interactive: false,
+      text: {
+  signal: "indexof(lower(datum.category), 'books') >= 0 ? ['Books, stationery', '& multimedia'] : datum.category"
+},
+lineHeight: { value: 16 },
 
-        encode: {
-          enter: {
-            x: {
-              signal: '(datum.x0 + datum.x1) / 2'
-            },
-            y: {
-              signal: '(datum.y0 + datum.y1) / 2 + 12'
-            },
+      angle: {
+        signal: '(datum.x1 - datum.x0) < 135 ? -90 : 0'
+      },
 
-            text: {
-              signal: "'$' + format(datum.spend_billion, '.1f') + 'b'"
-            },
+      align: { value: 'center' },
+      baseline: { value: 'middle' },
+      fill: { value: '#FFFFFF' },
+      fontSize: { value: 13 },
+      fontWeight: { value: 'bold' },
 
-            align: { value: 'center' },
-            baseline: { value: 'middle' },
-            fill: { value: '#FFFFFF' },
-            fontSize: { value: 12 },
-
-            limit: {
-              signal: 'max(0, datum.x1 - datum.x0 - 12)'
-            }
-          },
-
-          update: {
-            opacity: {
-              signal: '(datum.x1 - datum.x0) >= 80 && (datum.y1 - datum.y0) >= 35 ? 1 : 0'
-            }
-          }
-        }
+      limit: {
+        signal: '(datum.x1 - datum.x0) < 135 ? max(0, datum.y1 - datum.y0 - 16) : max(0, datum.x1 - datum.x0 - 16)'
       }
+    },
+
+    update: {
+      opacity: {
+        signal: '(datum.x1 - datum.x0) < 135 ? ((datum.x1 - datum.x0) >= 40 && (datum.y1 - datum.y0) >= 75 ? 1 : 0) : ((datum.y1 - datum.y0) >= 55 ? 1 : 0)'
+      }
+    }
+  }
+},
+
+      {
+  type: 'text',
+  from: { data: 'tree' },
+  interactive: false,
+
+  encode: {
+    enter: {
+      x: {
+        signal: '(datum.x0 + datum.x1) / 2 + ((datum.x1 - datum.x0) < 135 ? 20 : 0)'
+      },
+      y: {
+        signal: '(datum.y0 + datum.y1) / 2 + ((datum.x1 - datum.x0) < 135 ? 0 : 12)'
+      },
+
+      text: {
+        signal: "'$' + format(datum.spend_billion, '.1f') + 'b'"
+      },
+
+      angle: {
+        signal: '(datum.x1 - datum.x0) < 135 ? -90 : 0'
+      },
+
+      align: { value: 'center' },
+      baseline: { value: 'middle' },
+      fill: { value: '#FFFFFF' },
+      fontSize: { value: 12 },
+
+      limit: {
+        signal: '(datum.x1 - datum.x0) < 135 ? max(0, datum.y1 - datum.y0 - 16) : max(0, datum.x1 - datum.x0 - 12)'
+      }
+    },
+
+    update: {
+      opacity: {
+        signal: '(datum.x1 - datum.x0) < 135 ? ((datum.x1 - datum.x0) >= 40 && (datum.y1 - datum.y0) >= 75 ? 1 : 0) : ((datum.x1 - datum.x0) >= 80 && (datum.y1 - datum.y0) >= 35 ? 1 : 0)'
+      }
+    }
+  }
+}
     ]
   };
 

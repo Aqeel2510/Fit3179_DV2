@@ -279,8 +279,8 @@
               },
 
               text: {
-                field: 'category'
-              },
+  signal: "datum.category === 'Books stationery & multimedia' ? ['Books stationery &', 'multimedia'] : datum.category"
+},
 
               align: {
                 value: 'right'
@@ -291,9 +291,9 @@
               },
 
               fontSize: {
-                value: 10
+                value: 12
               },
-
+                
               limit: {
                 value: 148
               },

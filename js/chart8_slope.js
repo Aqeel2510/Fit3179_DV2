@@ -40,11 +40,11 @@
       { window: [{ op: 'rank', as: 'spend_rank' }], sort: [{ field: 'spend_billion', order: 'descending' }] },
       { window: [{ op: 'rank', as: 'basket_rank' }], sort: [{ field: 'basket_aud', order: 'descending' }] },
       { fold: ['spend_rank', 'basket_rank'], as: ['metric', 'ranking'] },
-      { calculate: "datum.metric === 'spend_rank' ? 'Total spending' : 'Average Order'", as: 'metric_label' }
+      { calculate: "datum.metric === 'spend_rank' ? 'Total spending' : 'Average Order Size'", as: 'metric_label' }
     ],
     mark: { type: 'line', strokeWidth: 3, point: { filled: true, size: 130 } },
     encoding: {
-      x: { field: 'metric_label', type: 'nominal', sort: ['Total spending', 'Average Order'], title: null },
+      x: { field: 'metric_label', type: 'nominal', sort: ['Total spending', 'Average Order    Size'], title: null },
       y: { field: 'ranking', type: 'quantitative', title: 'Rank', scale: { domain: [1, 5], reverse: true }, axis: { tickMinStep: 1 } },
       color: {
       field: 'generation',

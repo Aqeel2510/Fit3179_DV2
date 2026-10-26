@@ -28,14 +28,14 @@
     width: 'container', height: 300,
     data: { url: FILE.monthly },
     transform: [{
-  calculate: 'toNumber(datum.food_m) + toNumber(datum.non_food_m)',
+  calculate: '(toNumber(datum.food_m) + toNumber(datum.non_food_m))/1000',
   as: 'total_m'
 }],
     params: [{ name: 'timeZoom4', select: { type: 'interval', encodings: ['x'] }, bind: 'scales' }],
     mark: { type: 'line', stroke: TEAL, strokeWidth: 3, point: { size: 16 } },
     encoding: {
       x: { field: 'month', type: 'temporal', title: 'Month' },
-      y: { field: 'total_m', type: 'quantitative', title: 'Monthly online sales (A$ million)', scale: { zero: false } },
+      y: { field: 'total_m', type: 'quantitative', title: 'Monthly online sales (A$ Billion)', scale: { zero: false } },
       tooltip: [
         { field: 'month', type: 'temporal', title: 'Month', format: '%b %Y' },
         { field: 'total_m', type: 'quantitative', title: 'Online sales (A$m)', format: ',.1f' }

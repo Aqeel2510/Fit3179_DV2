@@ -4,7 +4,7 @@
   "height": 490,
   "autosize": {"type": "fit", "contains": "padding", "resize": true},
   "background": "transparent",
-  "projection": {"type": "mercator", "center": [134, -28], "scale": 600},
+  "projection": {"type": "mercator", "center": [134, -28], "scale": 500},
   "layer": [
     {
       "data": {"url": "data/states.json", "format": {"type": "topojson", "feature": "states"}},

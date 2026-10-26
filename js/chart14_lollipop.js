@@ -39,10 +39,7 @@
     }, { actions: false }).catch(error => console.error(`Failed to render ${target}`, error));
   }
 
-  function embedVega(target, spec) {
-    return vegaEmbed(target, spec, { actions: false })
-      .catch(error => console.error(`Failed to render ${target}`, error));
-  }
+
 
 
   const chart14 = {
@@ -102,7 +99,7 @@
         title: 'Estimated spending increase (A$ billion)',
         scale: { zero: true, nice: true },
         axis: {
-          format: '.2f',
+          labelExpr: "datum.value === 0 ? '0' : format(datum.value, '.2f')",
           grid: true,
           gridColor: '#e2e8f0'
         }
